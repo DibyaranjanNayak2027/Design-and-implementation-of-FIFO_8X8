@@ -26,6 +26,7 @@ module mod_b(
             idle: begin
                 ns = data_state;
                 rd_enb = 0;
+                data_out = 0;
             end
            /* s1: begin
                 ns = data_state;
