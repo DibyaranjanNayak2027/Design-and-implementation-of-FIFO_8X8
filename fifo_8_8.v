@@ -19,11 +19,11 @@ module fifo_8_8(
             for (i = 0; i < 8; i = i + 1)
                 mem[i] <= 0;
         end
-        if (wr_en && !full) begin
+        else if (wr_en && !full) begin
             mem[wr_ptr] <= data_in;
             wr_ptr <= wr_ptr + 1'b1;
         end
-        if (rd_en && !empty) begin
+        else if (rd_en && !empty) begin
             data_out <= mem[rd_ptr];
             rd_ptr <= rd_ptr + 1'b1;
         end
