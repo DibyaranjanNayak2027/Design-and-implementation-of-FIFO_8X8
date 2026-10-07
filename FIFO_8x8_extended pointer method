@@ -9,14 +9,12 @@ module fifo_8_8 (
     output wire empty
 );
 
-    // 4-bit extended pointers for depth 8 (3 LSBs for index, 1 MSB for lap tracking)
     reg [3:0] wr_ptr;
     reg [3:0] rd_ptr;
     reg [7:0] mem [0:7];
 
     integer i;
 
-    // --- Write Logic ---
     always @(posedge clk) begin
         if (rst) begin
             wr_ptr <= 4'd0;
@@ -28,7 +26,6 @@ module fifo_8_8 (
         end
     end
 
-    // --- Read Logic ---
     always @(posedge clk) begin
         if (rst) begin
             rd_ptr <= 4'd0;
@@ -39,8 +36,6 @@ module fifo_8_8 (
         end
     end
 
-    // --- Extended Pointer Status Signals ---
-    // Empty: Pointers are completely equal (same lap, same index)
     assign empty = (wr_ptr == rd_ptr);
 
     // Full: MSBs differ (different lap), lower 3 bits are equal (same index)
